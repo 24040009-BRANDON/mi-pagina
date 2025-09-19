@@ -296,13 +296,12 @@ section img:hover {
 }
 
 footer {
-    text-align: center;
+     text-align: center;
     padding: 1rem;
     background: linear-gradient(45deg, rgba(255, 69, 0, 0.2), rgba(255, 215, 0, 0.2));
     backdrop-filter: blur(10px);
     border-top: 3px solid #ff4500;
     margin-top: 3rem;
-    margin-right: 15px;
     font-size: 0.9rem;
     color: #ccc;
 }
@@ -321,3 +320,4 @@ footer {
     margin-top: 1rem;
     
 }
+
