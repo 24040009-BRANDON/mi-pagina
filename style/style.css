@@ -212,7 +212,6 @@ nav a {
     backdrop-filter: blur(5px);
     min-width: 200px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* EFECTO BRILLO: Línea de brillo que se desliza en hover */
@@ -258,8 +257,26 @@ nav a:hover img {
 }
 
 /* ========================================
-   PÁGINA INDEX -
+   PÁGINA INDEX - LOGO PRINCIPAL
    ======================================== */
+
+.koflogo {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 20px 0 !important;
+}
+
+.koflogo img {
+    width: 300px !important;
+    height: auto !important;
+    object-fit: none !important;
+    display: inline-block !important; /* Cambiado de block a inline-block */
+}
+
+/* HOVER DEL LOGO: Efectos al pasar mouse sobre el logo */
+.koflogo img:hover {
+    transform: scale(1.05);
+}
 
 /* IMÁGENES INDEX: Estilos específicos para imágenes de navegación en index */
 .indexpage nav img {
@@ -704,10 +721,101 @@ footer p {
 }
 
 /* ========================================
-   RESPONSIVE DESIGN
+   RESPONSIVE ADICIONALES PARA MÓVILES
    ======================================== */
+
+/* MÓVIL MEDIO: Adaptaciones intermedias */
+@media (max-width: 640px) {
+    /* HEADER: Ajustes intermedios */
+    header {
+        padding: 1.8rem 0.8rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 0.12rem;
+    }
+
+    header h2 {
+        font-size: 1.05rem;
+    }
+
+    /* BOTÓN: Tamaño intermedio */
+    button#backbutton {
+        top: 8px;
+        left: 8px;
+        padding: 11px 20px;
+        font-size: 13px;
+        min-width: 130px;
+    }
+
+    /* NAV: Ajustes intermedios */
+    nav a {
+        min-width: 92%;
+        max-width: 300px;
+        padding: 0.9rem 1.1rem;
+        font-size: 0.9rem;
+    }
+
+    /* INDEX: Tamaños intermedios */
+    .indexpage nav img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .indexpage .inicio img {
+        width: 220px;
+        height: 220px;
+    }
+}
+
 /* TABLET: Adaptaciones para pantallas medianas */
 @media (max-width: 1024px) {
+    /* HEADER: Ajustes para tablet */
+    header {
+        padding: 1.8rem 1rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+        letter-spacing: 0.25rem;
+    }
+
+    header h2 {
+        font-size: 1.3rem;
+    }
+
+    /* BOTÓN: Ajustes para tablet */
+    button#backbutton {
+        top: 15px;
+        left: 15px;
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+
+    /* NAV: Ajustes para tablet */
+    nav {
+        gap: 1.8rem;
+        padding: 1.5rem;
+    }
+
+    nav a {
+        min-width: 180px;
+        padding: 1.3rem 1.8rem;
+        font-size: 1.05rem;
+    }
+
+    /* INDEX: Tamaños para tablet */
+    .indexpage nav img {
+        width: 350px;
+        height: 350px;
+    }
+
+    .indexpage .inicio img {
+        width: 350px;
+        height: 350px;
+    }
+
     /* HISTORIA: Imágenes centradas en lugar de flotantes */
     .historia-img {
         float: none;
@@ -722,38 +830,44 @@ footer p {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
-    /* PERSONAJES: Adaptaciones extremas */
+    /* PERSONAJES: Adaptaciones para tablet */
     .listapersonajes {
-        margin: 0.5rem;
-        padding: 1rem;
+        margin: 0.8rem;
+        padding: 1.5rem;
     }
     
     .listapersonajes .character-card {
-        padding: 0.8rem;
+        padding: 1.2rem;
     }
     
     .listapersonajes .character-card h2 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
     
     .listapersonajes .character-card img {
-        width: 50px;
-        height: 75px;
+        width: 80px;
+        height: 120px;
     }
     
     .listapersonajes .character-card p {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
-    /* GALERÍA: Tamaños mínimos */
+    /* GALERÍA: Tamaños para tablet */
     .imagenespersonajes img {
-        width: 50px;
-        height: 75px;
+        width: 80px;
+        height: 120px;
     }
 
     .imagenespersonajes img:hover {
-        width: 70px;
-        height: 105px;
+        width: 120px;
+        height: 180px;
+    }
+
+    /* FOOTER: Ajustes para tablet */
+    footer {
+        padding: 1.8rem 1rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -764,32 +878,65 @@ footer p {
 
 /* MÓVIL: Adaptaciones para pantallas pequeñas */
 @media (max-width: 768px) {
+    /* HEADER: Adaptaciones móviles */
+    header {
+        padding: 1.5rem 1rem;
+    }
+
     /* TÍTULOS: Tamaños más pequeños */
     h1 {
-        font-size: 2.5rem;
-        letter-spacing: 0.2rem;
+        font-size: 2.2rem;
+        letter-spacing: 0.15rem;
+        margin-bottom: 0.8rem;
     }
 
     header h2 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    /* BOTÓN REGRESO: Adaptaciones móviles */
+    button#backbutton {
+        position: relative;
+        top: 10px;
+        left: 10px;
+        padding: 12px 24px;
+        font-size: 14px;
+        border-radius: 8px;
+        width: auto;
+        min-width: 140px;
     }
 
     /* NAVEGACIÓN: Columna vertical en móvil */
     nav {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.2rem;
         padding: 1rem;
+        margin-top: 2rem;
     }
 
     nav a {
-        min-width: 280px;
-        padding: 1.2rem 1.5rem;
-        font-size: 1rem;
+        min-width: 90%;
+        max-width: 320px;
+        margin: 0 auto;
+        padding: 1rem 1.2rem;
+        font-size: 0.95rem;
     }
 
-    /* LOGO: Más pequeño en móvil */
-    .koflogo img {
+    /* INDEX: Imágenes más pequeñas en móvil */
+    .indexpage nav img {
         width: 250px;
+        height: 250px;
+    }
+
+    .indexpage .inicio img {
+        width: 250px;
+        height: 250px;
+    }
+
+    /* FOOTER: Adaptaciones móviles */
+    footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.8rem;
     }
 
     /* HISTORIA: Texto más pequeño */
@@ -857,36 +1004,93 @@ footer p {
 
 /* MÓVIL PEQUEÑO: Adaptaciones para pantallas muy pequeñas */
 @media (max-width: 480px) {
+    /* HEADER: Adaptaciones extremas */
+    header {
+        padding: 1rem 0.5rem;
+    }
+
     /* TÍTULOS: Aún más pequeños */
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         letter-spacing: 0.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    header h2 {
+        font-size: 1rem;
+        margin-top: 0.3rem;
+    }
+
+    /* BOTÓN REGRESO: Adaptaciones extremas */
+    button#backbutton {
+        position: relative;
+        top: 5px;
+        left: 5px;
+        padding: 10px 18px;
+        font-size: 12px;
+        border-radius: 6px;
+        min-width: 120px;
+        max-width: 90%;
     }
 
     /* NAVEGACIÓN: Adaptaciones extremas */
+    nav {
+        gap: 1rem;
+        padding: 0.8rem;
+        margin-top: 1.5rem;
+    }
+
     nav a {
-        min-width: 250px;
-        padding: 1rem;
-        font-size: 0.9rem;
+        min-width: 95%;
+        max-width: 280px;
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+        margin: 0 auto;
     }
 
     nav a img {
-        width: 80px;
-        height: 40px;
+        width: 70px;
+        height: 35px;
+        margin-top: 0.5rem;
     }
 
-    /* LOGO: Mínimo en móvil pequeño */
-    .koflogo img {
-        width: 200px;
+    /* INDEX: Imágenes mínimas en móvil pequeño */
+    .indexpage nav img {
+        width: 180px;
+        height: 180px;
     }
 
-    /* HISTORIA: Texto mínimo */
-    .historia-content {
-        font-size: 14px;
+    .indexpage .inicio img {
+        width: 180px;
+        height: 180px;
     }
 
-    .historia-content > div {
+    /* MAIN: Ajustes generales */
+    main {
+        padding: 0;
+    }
+
+    /* FOOTER: Adaptaciones extremas */
+    footer {
+        padding: 1rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    footer p {
+        margin: 0.3rem 0;
+        line-height: 1.4;
+    }
+
+    /* CONTENEDORES GENERALES: Márgenes mínimos */
+    .historia-content,
+    .listapersonajes {
+        margin: 0.5rem;
         padding: 1rem;
+    }
+
+    /* BODY: Ajustes adicionales */
+    body {
+        font-size: 14px;
     }
 }
 
@@ -937,5 +1141,4 @@ img:focus {
         color: black;
     }
 }
-
 
