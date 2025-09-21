@@ -1,18 +1,29 @@
+/* ========================================
+   RESET Y CONFIGURACIÓN BASE
+   ======================================== */
+/* Elimina márgenes y padding por defecto de todos los elementos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ========================================
+   ESTRUCTURA PRINCIPAL DEL SITIO
+   ======================================== */
+/* BODY: Configura Flexbox para sticky footer y fondo base */
 body {
     font-family: 'Arial Black', Arial, sans-serif;
     background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
     color: #fff;
-    min-height: 100vh;
-    overflow-x: hidden;
+    min-height: 100vh; /* Altura mínima del viewport */
+    overflow-x: hidden; /* Evita scroll horizontal */
+    /* FLEXBOX PARA FOOTER STICKY */
+    display: flex;
+    flex-direction: column; /* Header -> Contenido -> Footer */
 }
 
-/* Animated background elements */
+/* FONDO ANIMADO: Crea efectos de gradientes animados detrás de todo */
 body::before {
     content: '';
     position: fixed;
@@ -25,15 +36,20 @@ body::before {
         radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 40% 80%, rgba(255, 0, 128, 0.1) 0%, transparent 50%);
     animation: backgroundPulse 8s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: -1;
+    pointer-events: none; /* No interfiere con clicks */
+    z-index: -1; /* Detrás de todo */
 }
 
+/* ANIMACIÓN: Pulso del fondo */
 @keyframes backgroundPulse {
     0% { opacity: 0.3; }
     100% { opacity: 0.7; }
 }
 
+/* ========================================
+   HEADER - ENCABEZADO
+   ======================================== */
+/* HEADER: Contiene título y subtítulo en todas las páginas */
 header {
     text-align: center;
     padding: 2rem 1rem;
@@ -44,6 +60,7 @@ header {
     overflow: hidden;
 }
 
+/* EFECTO ROTATIVO: Fondo giratorio detrás del header */
 header::before {
     content: '';
     position: absolute;
@@ -56,11 +73,16 @@ header::before {
     z-index: -1;
 }
 
+/* ANIMACIÓN: Rotación continua */
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
+/* ========================================
+   TÍTULOS PRINCIPALES
+   ======================================== */
+/* H1: Título principal con gradiente y animación */
 h1 {
     font-size: 3.5rem;
     font-weight: 900;
@@ -75,6 +97,22 @@ h1 {
     margin-bottom: 1rem;
 }
 
+/* ENLACES EN H1: Heredan estilos del título */
+h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* H2: Subtítulos del header solamente */
+header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin-top: 0.5rem;
+}
+
+/* ANIMACIÓN: Pulso y brillo del título */
 @keyframes titleGlow {
     0% { 
         text-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
@@ -86,6 +124,64 @@ h1 {
     }
 }
 
+/* ========================================
+   CONTENEDOR PRINCIPAL
+   ======================================== */
+/* MAIN: Contenedor que ocupa todo el espacio disponible entre header y footer */
+main {
+    flex: 1; /* Crece para ocupar espacio entre header y footer */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   BOTÓN DE REGRESO
+   ======================================== */
+/* BOTÓN: Botón de navegación con efecto arcoíris */
+button#backbutton {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+/* EFECTO ARCOÍRIS: Fondo animado del botón */
+button#backbutton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 800%;
+    border-radius: 10%;
+    filter: blur(8px);  
+    animation: glowing 20s linear infinite;
+}
+
+/* ANIMACIÓN: Movimiento del gradiente arcoíris */
+@keyframes glowing {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 400% 0%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* ========================================
+   NAVEGACIÓN GENERAL
+   ======================================== */
+/* NAV: Contenedor de navegación usado en todas las páginas */
 nav {
     display: flex;
     justify-content: center;
@@ -94,8 +190,10 @@ nav {
     padding: 2rem;
     flex-wrap: wrap;
     margin-top: 3rem;
+    flex-grow: 1; /* Crece dentro de main si es necesario */
 }
 
+/* ENLACES DE NAVEGACIÓN: Estilo base para todos los enlaces nav */
 nav a {
     display: flex;
     flex-direction: column;
@@ -114,8 +212,10 @@ nav a {
     backdrop-filter: blur(5px);
     min-width: 200px;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* EFECTO BRILLO: Línea de brillo que se desliza en hover */
 nav a::before {
     content: '';
     position: absolute;
@@ -127,10 +227,12 @@ nav a::before {
     transition: left 0.6s;
 }
 
+/* ACTIVACIÓN DEL BRILLO: Mueve el brillo al hacer hover */
 nav a:hover::before {
     left: 100%;
 }
 
+/* HOVER DE ENLACES: Efectos al pasar el mouse sobre enlaces */
 nav a:hover {
     transform: translateY(-10px) scale(1.05);
     background: linear-gradient(135deg, rgba(255, 69, 0, 0.4), rgba(255, 215, 0, 0.4));
@@ -141,6 +243,7 @@ nav a:hover {
         inset 0 0 20px rgba(255, 69, 0, 0.2);
 }
 
+/* IMÁGENES EN NAV: Estilos para imágenes dentro de enlaces de navegación */
 nav a img {
     border-radius: 10px;
     margin-top: 0.8rem;
@@ -148,12 +251,405 @@ nav a img {
     filter: brightness(0.9) contrast(1.1);
 }
 
+/* HOVER EN IMÁGENES NAV: Efectos en imágenes al hacer hover */
 nav a:hover img {
     filter: brightness(1.1) contrast(1.2);
     transform: scale(1.1);
 }
 
-/* Efectos de partículas flotantes */
+/* ========================================
+   PÁGINA INDEX -
+   ======================================== */
+
+/* IMÁGENES INDEX: Estilos específicos para imágenes de navegación en index */
+.indexpage nav img {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+}
+
+.indexpage .inicio img {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+}
+
+/* ========================================
+   PÁGINA HISTORIA
+   ======================================== */
+/* CONTENEDOR HISTORIA: Contenedor principal de la página historia */
+.historia-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-size: 18px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+/* SECCIONES HISTORIA: Cada bloque de contenido histórico */
+.historia-content > div {
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, rgba(255, 69, 0, 0.1), rgba(255, 215, 0, 0.1));
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    
+}
+
+/* HOVER SECCIONES: Efectos al pasar mouse sobre secciones */
+.historia-content > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+/* TÍTULOS H3: Subtítulos de cada era histórica */
+.historia-content h3 {
+    font-size: 2rem;
+    color: #ffd700;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    border-bottom: 2px solid #ff4500;
+    padding-bottom: 0.5rem;
+}
+
+/* PÁRRAFOS HISTORIA: Texto descriptivo de cada era */
+.historia-content p {
+    color: #e0e0e0;
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
+/* IMÁGENES HISTORIA: Imágenes flotantes en la página historia */
+.historia-img {
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 1rem 0;
+    float: right;
+    margin-left: 2rem;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+/* HOVER IMÁGENES HISTORIA: Efectos en hover de imágenes históricas */
+.historia-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+}
+
+/* ========================================
+   PÁGINA JUEGOS
+   ======================================== */
+/* GRID JUEGOS: Sistema de rejilla para tarjetas de juegos */
+.juegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    flex-grow: 1;
+}
+
+/* NAV JUEGOS: Permite que el nav se comporte como grid */
+.juegos nav {
+    display: contents;
+    margin-top: 0;
+}
+
+/* TARJETAS JUEGOS: Contenedor individual de cada juego */
+.game-card {
+    background: linear-gradient(135deg, rgba(255, 69, 0, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+/* HOVER TARJETAS: Efectos al pasar mouse sobre tarjetas de juegos */
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.4);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+}
+
+/* ENLACES TARJETAS: Enlaces dentro de tarjetas de juegos */
+.game-card a {
+    display: block;
+    text-decoration: none;
+}
+
+/* IMÁGENES JUEGOS: Imágenes principales de cada juego */
+.game-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* HOVER IMÁGENES JUEGOS: Efectos en imágenes de juegos */
+.game-card:hover img {
+    filter: brightness(1.1) contrast(1.2);
+    transform: scale(1.05);
+}
+
+/* TÍTULOS JUEGOS: Títulos de cada tarjeta de juego */
+.game-card h3 {
+    font-size: 1.3rem;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    padding: 1rem;
+    margin: 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ff4500;
+}
+
+/* DESCRIPCIÓN JUEGOS: Texto descriptivo de cada juego */
+.game-card p {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 1rem;
+    text-align: justify;
+    font-weight: normal;
+}
+
+/* ========================================
+   PÁGINA PERSONAJES
+   ======================================== */
+/* GALERÍA PERSONAJES: Galería superior de imágenes pequeñas */
+.personajespage .imagenespersonajes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+/* IMÁGENES GALERÍA: Imágenes pequeñas que crecen en hover */
+.imagenespersonajes img {
+    width: 160px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* HOVER GALERÍA: Agranda imágenes al hacer hover */
+.imagenespersonajes img:hover {
+    width: 300px;
+    height: 420px;
+    opacity: 1;
+    filter: brightness(1.1) contrast(1.2);
+    transform: translateY(-10px);
+    border: 2px solid rgba(255, 215, 0, 0.8);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+    z-index: 10;
+}
+
+/* CONTENEDOR PERSONAJES: Contenedor principal de la lista */
+.listapersonajes {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 69, 0, 0.1), rgba(255, 215, 0, 0.1));
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    flex-grow: 1;
+}
+
+/* GRID PERSONAJES: Sistema de rejilla para tarjetas de personajes */
+.listapersonajes ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+}
+
+/* TARJETAS PERSONAJES: Cada tarjeta individual de personaje */
+.listapersonajes .character-card {
+    background: linear-gradient(135deg, rgba(255, 69, 0, 0.15), rgba(255, 215, 0, 0.15));
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HOVER TARJETAS PERSONAJES: Efectos al pasar mouse sobre tarjetas */
+.listapersonajes .character-card:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(255, 215, 0, 0.5);
+    border: 2px solid rgba(255, 215, 0, 0.7);
+}
+
+/* EFECTO BRILLO TARJETAS: Brillo que cruza las tarjetas en hover */
+.listapersonajes .character-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+/* ACTIVACIÓN BRILLO: Activa el brillo en hover */
+.listapersonajes .character-card:hover::before {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out;
+}
+
+/* ANIMACIÓN: Movimiento del brillo */
+@keyframes shine {
+    0% { transform: rotate(45deg) translateX(-100%); }
+    100% { transform: rotate(45deg) translateX(100%); }
+}
+
+/* TÍTULOS PERSONAJES: Nombres de los personajes */
+.listapersonajes .character-card h2 {
+    font-size: 1.4rem;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ff4500;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+/* ========================================
+   IMÁGENES PERSONAJES CON PULSO ROJO
+   ======================================== */
+/* IMÁGENES PERSONAJES: Imágenes flotantes en las tarjetas con animación de pulso rojo */
+.listapersonajes .character-card img {
+    width: 160px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+    float: right;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: redImageGlow 2.5s ease-in-out infinite alternate;
+}
+
+/* HOVER IMÁGENES PERSONAJES: Efectos en imágenes de personajes */
+.listapersonajes .character-card img:hover {
+    transform: scale(1.1);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    animation: redImageGlowIntense 1.5s ease-in-out infinite alternate;
+}
+
+/* DESCRIPCIÓN PERSONAJES: Texto descriptivo de cada personaje */
+.listapersonajes .character-card p {
+    color: #e0e0e0;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* ========================================
+   ANIMACIONES DE PULSO ROJO PARA IMÁGENES
+   ======================================== */
+/* ANIMACIÓN: Resplandor rojo directo en la imagen */
+@keyframes redImageGlow {
+    0% { 
+        filter: 
+            brightness(1.0) 
+            contrast(1.1)
+            drop-shadow(0 0 8px rgba(255, 69, 0, 0.4))
+            drop-shadow(0 0 15px rgba(255, 0, 0, 0.3))
+            drop-shadow(0 0 20px rgba(220, 20, 60, 0.2));
+    }
+    100% { 
+        filter: 
+            brightness(1.15) 
+            contrast(1.25)
+            drop-shadow(0 0 15px rgba(255, 69, 0, 0.7))
+            drop-shadow(0 0 25px rgba(255, 0, 0, 0.6))
+            drop-shadow(0 0 35px rgba(220, 20, 60, 0.4))
+            drop-shadow(0 0 45px rgba(139, 0, 0, 0.3));
+    }
+}
+
+/* ANIMACIÓN: Resplandor rojo más intenso para hover */
+@keyframes redImageGlowIntense {
+    0% { 
+        filter: 
+            brightness(1.1) 
+            contrast(1.2)
+            drop-shadow(0 0 12px rgba(255, 69, 0, 0.6))
+            drop-shadow(0 0 20px rgba(255, 0, 0, 0.5))
+            drop-shadow(0 0 30px rgba(220, 20, 60, 0.4))
+            drop-shadow(0 0 40px rgba(139, 0, 0, 0.3));
+    }
+    100% { 
+        filter: 
+            brightness(1.25) 
+            contrast(1.4)
+            drop-shadow(0 0 20px rgba(255, 69, 0, 0.9))
+            drop-shadow(0 0 30px rgba(255, 0, 0, 0.8))
+            drop-shadow(0 0 40px rgba(220, 20, 60, 0.7))
+            drop-shadow(0 0 50px rgba(139, 0, 0, 0.5))
+            drop-shadow(0 0 60px rgba(178, 34, 34, 0.4));
+    }
+}
+
+/* ========================================
+   FOOTER STICKY
+   ======================================== */
+/* FOOTER: Pie de página que siempre está al fondo */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(45deg, rgba(255, 69, 0, 0.2), rgba(255, 215, 0, 0.2));
+    backdrop-filter: blur(10px);
+    border-top: 3px solid #ff4500;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: auto; /* CLAVE: Empuja el footer al fondo */
+    flex-shrink: 0; /* No se encoge nunca */
+}
+
+/* PÁRRAFOS FOOTER: Espaciado de párrafos en footer */
+footer p {
+    margin: 0.5rem 0;
+}
+
+/* ========================================
+   EFECTOS DECORATIVOS
+   ======================================== */
+/* PARTÍCULAS: Efectos decorativos flotantes (no implementadas) */
 .particle {
     position: fixed;
     width: 4px;
@@ -163,8 +659,10 @@ nav a:hover img {
     opacity: 0.7;
     animation: float 8s infinite linear;
     pointer-events: none;
+    z-index: 1;
 }
 
+/* ANIMACIÓN: Movimiento de partículas */
 @keyframes float {
     0% {
         transform: translateY(100vh) rotate(0deg);
@@ -182,7 +680,22 @@ nav a:hover img {
     }
 }
 
-/* Efecto ripple para clicks */
+@keyframes logoGlow {
+    0% { 
+        filter: 
+            drop-shadow(0 0 15px rgba(255, 69, 0, 0.5))
+            drop-shadow(0 0 25px rgba(255, 215, 0, 0.3))
+            brightness(1.1);
+    }
+    100% { 
+        filter: 
+            drop-shadow(0 0 20px rgba(255, 69, 0, 0.7))
+            drop-shadow(0 0 35px rgba(255, 215, 0, 0.5))
+            brightness(1.15);
+    }
+}
+
+/* EFECTO RIPPLE: Para clicks (no implementado) */
 @keyframes ripple {
     to {
         transform: scale(4);
@@ -190,13 +703,78 @@ nav a:hover img {
     }
 }
 
-/* Responsive design */
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+/* TABLET: Adaptaciones para pantallas medianas */
+@media (max-width: 1024px) {
+    /* HISTORIA: Imágenes centradas en lugar de flotantes */
+    .historia-img {
+        float: none;
+        display: block;
+        margin: 1rem auto;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    /* JUEGOS: Grid más pequeño */
+    .juegos {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    /* PERSONAJES: Adaptaciones extremas */
+    .listapersonajes {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .listapersonajes .character-card {
+        padding: 0.8rem;
+    }
+    
+    .listapersonajes .character-card h2 {
+        font-size: 1rem;
+    }
+    
+    .listapersonajes .character-card img {
+        width: 50px;
+        height: 75px;
+    }
+    
+    .listapersonajes .character-card p {
+        font-size: 0.8rem;
+    }
+
+    /* GALERÍA: Tamaños mínimos */
+    .imagenespersonajes img {
+        width: 50px;
+        height: 75px;
+    }
+
+    .imagenespersonajes img:hover {
+        width: 70px;
+        height: 105px;
+    }
+}
+
+    .listapersonajes ul {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 1.5rem;
+    }
+
+/* MÓVIL: Adaptaciones para pantallas pequeñas */
 @media (max-width: 768px) {
+    /* TÍTULOS: Tamaños más pequeños */
     h1 {
         font-size: 2.5rem;
         letter-spacing: 0.2rem;
     }
 
+    header h2 {
+        font-size: 1.2rem;
+    }
+
+    /* NAVEGACIÓN: Columna vertical en móvil */
     nav {
         flex-direction: column;
         gap: 1.5rem;
@@ -208,14 +786,84 @@ nav a:hover img {
         padding: 1.2rem 1.5rem;
         font-size: 1rem;
     }
+
+    /* LOGO: Más pequeño en móvil */
+    .koflogo img {
+        width: 250px;
+    }
+
+    /* HISTORIA: Texto más pequeño */
+    .historia-content {
+        padding: 1rem;
+        font-size: 16px;
+    }
+
+    .historia-content h3 {
+        font-size: 1.5rem;
+    }
+
+    /* JUEGOS: Una sola columna */
+    .juegos {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    /* PERSONAJES: Adaptaciones móviles */
+    .listapersonajes {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .listapersonajes ul {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .listapersonajes .character-card {
+        padding: 1rem;
+    }
+    
+    .listapersonajes .character-card h2 {
+        font-size: 1.2rem;
+    }
+    
+    .listapersonajes .character-card img {
+        width: 60px;
+        height: 90px;
+        float: none;
+        display: block;
+        margin: 1rem auto;
+    }
+    
+    .listapersonajes .character-card p {
+        font-size: 0.9rem;
+    }
+
+    /* GALERÍA: Imágenes más pequeñas */
+    .imagenespersonajes {
+        gap: 0.5rem;
+    }
+
+    .imagenespersonajes img {
+        width: 60px;
+        height: 90px;
+    }
+
+    .imagenespersonajes img:hover {
+        width: 80px;
+        height: 120px;
+    }
 }
 
+/* MÓVIL PEQUEÑO: Adaptaciones para pantallas muy pequeñas */
 @media (max-width: 480px) {
+    /* TÍTULOS: Aún más pequeños */
     h1 {
         font-size: 2rem;
         letter-spacing: 0.1rem;
     }
 
+    /* NAVEGACIÓN: Adaptaciones extremas */
     nav a {
         min-width: 250px;
         padding: 1rem;
@@ -226,98 +874,68 @@ nav a:hover img {
         width: 80px;
         height: 40px;
     }
+
+    /* LOGO: Mínimo en móvil pequeño */
+    .koflogo img {
+        width: 200px;
+    }
+
+    /* HISTORIA: Texto mínimo */
+    .historia-content {
+        font-size: 14px;
+    }
+
+    .historia-content > div {
+        padding: 1rem;
+    }
 }
 
-.indexpage img {
-    width: 250px;
-    height: 250px;
-}
-
-.indexpage .inicio img {
-    width: 300px;
-    height: 250px;
-    object-fit: cover;
-}
-
-.listapersonajes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-}
-
-.listapersonajes img {
-    width:  600px;
-    height: 700px;
-    object-fit: cover;
-    border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.personajespage .imagenespersonajes {
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    margin-top: 1rem;
-}
-
-section img {
-    justify-content: center;
-    width:  100px;
-    flex-grow: 1;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: 0.5 ease;
-}
-
-section img:hover {
-    justify-content: center;
-    cursor: crosshair;
-    width: 300px;
-    opacity: 1;
-    filter: contrast(120%);
-}
-
-
-.juegos img { 
-    width:  700px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-footer {
-    text-align: center;
-    background: linear-gradient(45deg, rgba(255, 69, 0, 0.2), rgba(255, 215, 0, 0.2));
-    backdrop-filter: blur(10px);
-    border-top: 3px solid #ff4500;
-    margin-top: 3rem;
-    font-size: 0.9rem;
-    color: #ccc;
-}
-
- .historia-content {
-    font-size: 20px;
-}
-
-
-.historia-content img {
-    width:  200px;
-    height: 600px;
-    border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 1rem;
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+/* REDUCIR MOVIMIENTO: Para usuarios con preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
     
+    body::before,
+    header::before,
+    h1 {
+        animation: none;
+    }
+}
+
+/* ESTADOS DE FOCO: Para navegación por teclado */
+a:focus,
+img:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* ========================================
+   ESTILOS DE IMPRESIÓN
+   ======================================== */
+/* IMPRESIÓN: Adaptaciones para imprimir */
+@media print {
+    /* ELIMINAR EFECTOS: Quita elementos decorativos */
+    body::before,
+    header::before,
+    .particle {
+        display: none;
+    }
+    
+    /* COLORES IMPRESIÓN: Fondo blanco y texto negro */
+    body {
+        background: white;
+        color: black;
+    }
+    
+    h1, h2, h3 {
+        color: black;
+    }
 }
 
 
